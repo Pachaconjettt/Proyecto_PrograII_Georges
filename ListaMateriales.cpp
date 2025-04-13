@@ -13,15 +13,4 @@
 * -------------------------------------------------------------------+
 */
 
-#ifndef BIBLIOTECA_H
-#define BIBLIOTECA_H
-
-
-
-class Biblioteca {
-
-};
-
-
-
-#endif //BIBLIOTECA_H
+#include "ListaMateriales.h"

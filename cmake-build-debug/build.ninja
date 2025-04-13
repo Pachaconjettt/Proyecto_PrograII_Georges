@@ -67,6 +67,24 @@ build CMakeFiles/Proyecto_PrograII_Georges.dir/Excepciones.cpp.obj: CXX_COMPILER
   OBJECT_DIR = CMakeFiles\Proyecto_PrograII_Georges.dir
   OBJECT_FILE_DIR = CMakeFiles\Proyecto_PrograII_Georges.dir
 
+build CMakeFiles/Proyecto_PrograII_Georges.dir/ManejoArchivos.cpp.obj: CXX_COMPILER__Proyecto_PrograII_Georges_unscanned_Debug C$:/Users/Usuario/CLionProjects/Proyecto_PrograII_Georges/ManejoArchivos.cpp || cmake_object_order_depends_target_Proyecto_PrograII_Georges
+  DEP_FILE = CMakeFiles\Proyecto_PrograII_Georges.dir\ManejoArchivos.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Proyecto_PrograII_Georges.dir
+  OBJECT_FILE_DIR = CMakeFiles\Proyecto_PrograII_Georges.dir
+
+build CMakeFiles/Proyecto_PrograII_Georges.dir/Material.cpp.obj: CXX_COMPILER__Proyecto_PrograII_Georges_unscanned_Debug C$:/Users/Usuario/CLionProjects/Proyecto_PrograII_Georges/Material.cpp || cmake_object_order_depends_target_Proyecto_PrograII_Georges
+  DEP_FILE = CMakeFiles\Proyecto_PrograII_Georges.dir\Material.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Proyecto_PrograII_Georges.dir
+  OBJECT_FILE_DIR = CMakeFiles\Proyecto_PrograII_Georges.dir
+
+build CMakeFiles/Proyecto_PrograII_Georges.dir/ListaMateriales.cpp.obj: CXX_COMPILER__Proyecto_PrograII_Georges_unscanned_Debug C$:/Users/Usuario/CLionProjects/Proyecto_PrograII_Georges/ListaMateriales.cpp || cmake_object_order_depends_target_Proyecto_PrograII_Georges
+  DEP_FILE = CMakeFiles\Proyecto_PrograII_Georges.dir\ListaMateriales.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Proyecto_PrograII_Georges.dir
+  OBJECT_FILE_DIR = CMakeFiles\Proyecto_PrograII_Georges.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Proyecto_PrograII_Georges
@@ -75,7 +93,7 @@ build CMakeFiles/Proyecto_PrograII_Georges.dir/Excepciones.cpp.obj: CXX_COMPILER
 #############################################
 # Link the executable Proyecto_PrograII_Georges.exe
 
-build Proyecto_PrograII_Georges.exe: CXX_EXECUTABLE_LINKER__Proyecto_PrograII_Georges_Debug CMakeFiles/Proyecto_PrograII_Georges.dir/main.cpp.obj CMakeFiles/Proyecto_PrograII_Georges.dir/Biblioteca.cpp.obj CMakeFiles/Proyecto_PrograII_Georges.dir/Excepciones.cpp.obj
+build Proyecto_PrograII_Georges.exe: CXX_EXECUTABLE_LINKER__Proyecto_PrograII_Georges_Debug CMakeFiles/Proyecto_PrograII_Georges.dir/main.cpp.obj CMakeFiles/Proyecto_PrograII_Georges.dir/Biblioteca.cpp.obj CMakeFiles/Proyecto_PrograII_Georges.dir/Excepciones.cpp.obj CMakeFiles/Proyecto_PrograII_Georges.dir/ManejoArchivos.cpp.obj CMakeFiles/Proyecto_PrograII_Georges.dir/Material.cpp.obj CMakeFiles/Proyecto_PrograII_Georges.dir/ListaMateriales.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Proyecto_PrograII_Georges.dir

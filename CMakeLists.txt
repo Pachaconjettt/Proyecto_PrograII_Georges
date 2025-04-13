@@ -10,4 +10,10 @@ add_executable(Proyecto_PrograII_Georges main.cpp
         Excepciones.h
         main.cpp
         nodo.h
-        Lista.h)
+        Lista.h
+        ManejoArchivos.cpp
+        ManejoArchivos.h
+        Material.cpp
+        Material.h
+        ListaMateriales.cpp
+        ListaMateriales.h)
