@@ -35,6 +35,8 @@ public:
     ~Material();
     virtual void prestar() = 0;
     virtual void guardar(ofstream&) = 0;
+    virtual string getNumCatalogo() = 0;
+    virtual string getNombre() = 0;
 };
 
 //------------------------------------------------------------------
@@ -47,6 +49,8 @@ public:
     ~Libro();
     virtual void prestar() override;
     virtual void guardar(ofstream&) override;
+    virtual string getNumCatalogo() override;
+    virtual string getNombre() override;
 };
 
 //-----------------------------------------------------------------
@@ -61,6 +65,8 @@ public:
     ~Revista();
     virtual void prestar() override;
     virtual void guardar(ofstream&) override;
+    virtual  string getNumCatalogo() override;
+    virtual string getNombre() override;
 };
 
 //-----------------------------------------------------------------
@@ -74,6 +80,8 @@ public:
     ~MaterialDigital();
     virtual void prestar() override;
     virtual void guardar(ofstream&) override;
+    virtual string getNumCatalogo() override;
+    virtual string getNombre() override;
 };
 //-----------------------------------------------------------------
 #endif //MATERIAL_H

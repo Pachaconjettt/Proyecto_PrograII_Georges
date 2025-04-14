@@ -16,4 +16,6 @@ add_executable(Proyecto_PrograII_Georges main.cpp
         Material.cpp
         Material.h
         ListaMateriales.cpp
-        ListaMateriales.h)
+        ListaMateriales.h
+        Usuario.cpp
+        Usuario.h)

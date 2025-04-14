@@ -135,5 +135,11 @@ string Lista<T>::toString() const {
     return s.str();
 }
 
+//------------------------------------------------------------------------
+template <typename T>
+ostream& operator<<(ostream& output, const Lista<T>& list) {
+    output << list.toString();
+    return output;
+}
 
 #endif //LISTA_H

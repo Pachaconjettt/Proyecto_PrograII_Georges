@@ -34,6 +34,10 @@ void Libro::prestar() override {
 void Libro::guardar(ofstream& out) override {
 out  <<"Libro;"<< NumClasificacion << ";" << NumCatalogo << ";" << Titulo << ";" << Autores << ";" << Palabra_s_clave << ";" << EstadoMaterial << ";" << ubicacionFisica << "\n";
 }
+string Libro::getNumCatalogo() override{ return this->NumCatalogo;}
+
+string Libro::getNombre() override {return this->Titulo;}
+
 
 //-------------------------------------------------------------------------
 
@@ -52,6 +56,9 @@ void Revista::guardar(ofstream& out) override {
     out << "Revista;" << NumClasificacion << ";" << NumCatalogo << ";" << Titulo << ";" <<Autores << ";" << Palabra_s_clave << ";" << EstadoMaterial <<";"<<UbicacionFisica << ";" << numero << ";" << volumen << "\n";
 }
 
+string Revista::getNumCatalogo() override{ return this->NumCatalogo;}
+
+string Revista::getNombre() override {return this->Titulo;}
 
 //-----------------------------------------------------------------------
 
@@ -70,5 +77,7 @@ void MaterialDigital::guardar(ofstream & out) {
     out << "Digital;" << NumClasificacion << ";" << NumCatalogo << ";" << Titulo << ";" << Autores << ";" << Palabra_s_clave << ";" << EstadoMaterial << ";" << formato << ";" << accesoHabilitado << "\n";
 }
 
+string MaterialDigital::getNumCatalogo() override{ return this->NumCatalogo;}
 
+string MaterialDigital::getNombre() override {return this->Titulo;}
 

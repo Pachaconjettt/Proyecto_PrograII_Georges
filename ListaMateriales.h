@@ -3,7 +3,8 @@
 #define LISTAMATERIALES_H
 #include "Lista.h"
 #include "Material.h"
-
+#include <sstream>
+#include <iostream>
 
 class Material;
 
@@ -20,7 +21,7 @@ public:
     Material* getMaterialEsp(string ID);
 //------------------------------------
     string toString(); // El toString general
-    string cursoBasico();
+    string MaterialBasico();
 //------------------------------------
 };
 
