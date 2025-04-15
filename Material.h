@@ -37,6 +37,7 @@ public:
     virtual void guardar(ofstream&) = 0;
     virtual string getNumCatalogo() = 0;
     virtual string getNombre() = 0;
+    virtual string toString() const  = 0;
 };
 
 //------------------------------------------------------------------
@@ -51,6 +52,7 @@ public:
     virtual void guardar(ofstream&) override;
     virtual string getNumCatalogo() override;
     virtual string getNombre() override;
+    virtual string toString()  const override;
 };
 
 //-----------------------------------------------------------------
@@ -67,6 +69,7 @@ public:
     virtual void guardar(ofstream&) override;
     virtual  string getNumCatalogo() override;
     virtual string getNombre() override;
+    virtual string toString() const override;
 };
 
 //-----------------------------------------------------------------
@@ -82,6 +85,9 @@ public:
     virtual void guardar(ofstream&) override;
     virtual string getNumCatalogo() override;
     virtual string getNombre() override;
+    virtual string toString() const override;
 };
 //-----------------------------------------------------------------
 #endif //MATERIAL_H
+
+ostream& operator<<(ostream& output, const Material& mats);

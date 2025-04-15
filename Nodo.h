@@ -50,22 +50,22 @@ Nodo<T>::~Nodo() {}
 //---------------------------------------------------------------
 
 template<typename T>
-void Nodo<T>::setSig(Nodo<T> * next) {this->sig = next;}
+void Nodo<T>::setSig(Nodo<T> * next) {sig = next;}
 
 template<typename T>
-void Nodo<T>::setDato(T * info) {this->dato = info;}
+void Nodo<T>::setDato(T * info) {dato = info;}
 
 //----------------------------------------------------------------
 
 template<typename T>
-T *Nodo<T>::getDato() {return this->dato;}
+T *Nodo<T>::getDato() {return dato;}
 
 template <typename T>
-Nodo<T> * Nodo<T>::getSig() {return this->sig;}
+Nodo<T> * Nodo<T>::getSig() {return sig;}
 
 //---------------------------------------------------------------
 
-template<typename T>
+template <typename  T>
 string Nodo<T>::toString() const {
     stringstream s;
     s << *dato;

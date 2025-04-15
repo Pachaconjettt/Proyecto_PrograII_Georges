@@ -80,7 +80,7 @@ void Lista<T>::eliminarInicio() {
     size--;
 }
 template <typename T>
-void eliminarPos(int pos) {
+void Lista<T>::eliminarPos(int pos) {
     Nodo<T>* actual = primero;
     Nodo<T>* borrar;
 

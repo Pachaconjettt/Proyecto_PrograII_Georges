@@ -18,4 +18,8 @@ add_executable(Proyecto_PrograII_Georges main.cpp
         ListaMateriales.cpp
         ListaMateriales.h
         Usuario.cpp
-        Usuario.h)
+        Usuario.h
+        ListaUsuarios.cpp
+        ListaUsuarios.h
+        Prestamo.cpp
+        Prestamo.h)

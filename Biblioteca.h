@@ -15,11 +15,22 @@
 
 #ifndef BIBLIOTECA_H
 #define BIBLIOTECA_H
-
+#include "ManejoArchivos.h"
+#include "ListaMateriales.h"
+#include "ListaUsuarios.h"
+#include <iostream>
 
 
 class Biblioteca {
-
+private:
+    string nombre;
+    ListaUsuarios* usuarios;
+    ListaMateriales* mats;
+public:
+    Biblioteca();
+    ~Biblioteca();
+    //-------------------------------
+    void menu();
 };
 
 

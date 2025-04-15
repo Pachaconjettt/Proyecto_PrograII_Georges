@@ -15,7 +15,6 @@
 #ifndef USUARIO_H
 #define USUARIO_H
 #include <sstream>
-#include <iostream>
 #include <string>
 
 using namespace std;
@@ -23,9 +22,21 @@ using namespace std;
 
 class Usuario {
 private:
-
+    string identificacion;
+    string nombre;
+    string apellidos;
+    int estado;
+public:
+    Usuario(string,string,string,int);
+    ~Usuario();
+    string getIdentificacion();
+    string getNombre();
+    string getNombreCompleto();
+    bool getEstado();
+    void setEstado(int);
+    string toString() const;
 };
 
-
+ostream& operator<<(ostream& output, const Usuario& user);
 
 #endif //USUARIO_H

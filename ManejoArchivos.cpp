@@ -19,21 +19,20 @@ ManejoArchivos::ManejoArchivos() {
 }
 
 string ManejoArchivos::Logo() {
-string str;
-stringstream r;
-ifstream out("logo.txt", ios::in);
-    if  (!out) {
-
-    }else {
+    string str;
+    stringstream s;
+    ifstream out("Logo_efra.txt",ios::in);
+        if (!out) {
+        }
+    else {
         while (!out.eof()) {
             getline(out,str);
             s << str << endl;
         }
         out.close();
     }
-return s.str();
+    return s.str();
 }
-
 int convertirInt(string s) { // Convierte un string a int, recibe un string y devuelve un int
     stringstream r(s); // se crea un objeto de la clase stringstream, se le pasa el string s como parametro para que lo convierta a int
     int v;

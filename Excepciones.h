@@ -20,7 +20,7 @@
 using namespace std;
 
 //Control de excepciones muy generales
-void inOutRange(int, minR, int maxR, int var, bool);
+void inOutRange(int minR, int maxR, int var, bool);
 void intNegative(int n);
 void invalidChar(char comp, char dat);
 
