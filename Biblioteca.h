@@ -18,6 +18,7 @@
 #include "ManejoArchivos.h"
 #include "ListaMateriales.h"
 #include "ListaUsuarios.h"
+#include "Fecha.h"
 #include <iostream>
 
 
@@ -26,11 +27,17 @@ private:
     string nombre;
     ListaUsuarios* usuarios;
     ListaMateriales* mats;
+    Fecha* currentDate;
 public:
     Biblioteca();
     ~Biblioteca();
     //-------------------------------
+    void setNombre(string nom);
+    //-------------------------------
     void menu();
+    //-------------------------------
+    void InclusionDatosMats();
+
 };
 
 

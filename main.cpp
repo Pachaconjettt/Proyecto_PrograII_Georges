@@ -19,8 +19,9 @@
 
 int main() {
     system("color 03");
-
     Biblioteca* b = new Biblioteca;
+    b->setNombre("Mortal Biblioteca 2");
+
     b->menu();
     return 0;
 }

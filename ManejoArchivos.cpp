@@ -21,12 +21,13 @@ ManejoArchivos::ManejoArchivos() {
 string ManejoArchivos::Logo() {
     string str;
     stringstream s;
-    ifstream out("Logo_efra.txt",ios::in);
-        if (!out) {
-        }
-    else {
+    ifstream out("logo.txt", ios::in);
+    if (!out) {
+        cerr << "Error: Could not open logo.txt. Check the file path and permissions." << endl;
+        return "";
+    } else {
         while (!out.eof()) {
-            getline(out,str);
+            getline(out, str);
             s << str << endl;
         }
         out.close();
