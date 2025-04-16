@@ -18,6 +18,8 @@
 #include "ManejoArchivos.h"
 #include "ListaMateriales.h"
 #include "ListaUsuarios.h"
+#include "GestorPrestamos.h"
+#include "ListaPrestamos.h"
 #include "Fecha.h"
 #include <iostream>
 
@@ -27,6 +29,8 @@ private:
     string nombre;
     ListaUsuarios* usuarios;
     ListaMateriales* mats;
+    ListaPrestamos* prestamos;
+    GestorPrestamos * gestor;
     Fecha* currentDate;
 public:
     Biblioteca();
@@ -37,7 +41,14 @@ public:
     void menu();
     //-------------------------------
     void InclusionDatosMats();
+    void ModificarDatosMats();
+    void InclusionUsuarios();
+    void ModificacionUsuario();
+    void RegistroPrestaYDevo();
     void  ReporteDeMats();
+    void ReporteUsuarios();
+    void ReportePrestamo();
+    void ReportePrestamosXusuario();
 };
 
 

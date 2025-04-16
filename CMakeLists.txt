@@ -24,4 +24,8 @@ add_executable(Proyecto_PrograII_Georges main.cpp
         Prestamo.cpp
         Prestamo.h
         Fecha.cpp
-        Fecha.h)
+        Fecha.h
+        ListaPrestamos.cpp
+        ListaPrestamos.h
+        GestorPrestamos.cpp
+        GestorPrestamos.h)

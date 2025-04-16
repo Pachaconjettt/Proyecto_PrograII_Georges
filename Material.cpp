@@ -38,6 +38,16 @@ string Libro::getNumCatalogo() { return this->NumCatalogo;}
 
 string Libro::getNombre()  {return this->Titulo;}
 
+int Libro::getEstadoMaterial() {return this->EstadoMaterial;}
+
+void Libro::setNumClasificacion(string numC){this->NumClasificacion = numC;}
+void Libro::setNumCatalogo(string NumC){this->NumCatalogo = NumC;}
+void Libro::setTitulo(string Titulo){this->Titulo = Titulo;}
+void Libro::setAutores(string authors){this->Autores = authors;}
+void Libro::setPalabras(string words){this->Palabra_s_clave = words;}
+void Libro::setEstadoMats(int Estate){this->EstadoMaterial = Estate;}
+void Libro::setUbicacionFisica(string Ubi){this->ubicacionFisica = Ubi;}
+
 string Libro::toString() const {
     stringstream s;
     s << "Numero de clasificacion: " << NumClasificacion<< endl;
@@ -69,6 +79,17 @@ void Revista::guardar(ofstream& out)  {
 string Revista::getNumCatalogo() { return this->NumCatalogo;}
 
 string Revista::getNombre()  {return this->Titulo;}
+int Revista::getEstadoMaterial() {return this->EstadoMaterial;}
+void Revista::setNumClasificacion(string numC){this->NumClasificacion = numC;}
+void Revista::setNumCatalogo(string NumC){this->NumCatalogo = NumC;}
+void Revista::setTitulo(string Titulo){this->Titulo = Titulo;}
+void Revista::setAutores(string authors){this->Autores = authors;}
+void Revista::setPalabras(string words){this->Palabra_s_clave = words;}
+void Revista::setEstadoMats(int Estate){this->EstadoMaterial = Estate;}
+void Revista::setUbicacionFisica(string Ubi){this->UbicacionFisica = Ubi;}
+void Revista::setNumero(int num) {this->numero = num;}
+void Revista::setVolumen(int volumen) {this->volumen = volumen;}
+
 
 string Revista::toString() const {
     stringstream s;
@@ -103,7 +124,7 @@ void MaterialDigital::guardar(ofstream & out) {
 string MaterialDigital::getNumCatalogo() { return this->NumCatalogo;}
 
 string MaterialDigital::getNombre() {return this->Titulo;}
-
+int MaterialDigital::getEstadoMaterial() {return this->EstadoMaterial;}
 string MaterialDigital::toString() const {
     stringstream s;
     s << "Numero de clasificacion: " << NumClasificacion<< endl;
@@ -116,7 +137,18 @@ string MaterialDigital::toString() const {
     s << "Acceso habilitado (1: si, 0: No):" << accesoHabilitado << endl;
     return s.str();
 }
+void MaterialDigital::setNumClasificacion(string numC){this->NumClasificacion = numC;}
+void MaterialDigital::setNumCatalogo(string NumC){this->NumCatalogo = NumC;}
+void MaterialDigital::setTitulo(string Titulo){this->Titulo = Titulo;}
+void MaterialDigital::setAutores(string authors){this->Autores = authors;}
+void MaterialDigital::setPalabras(string words){this->Palabra_s_clave = words;}
+void MaterialDigital::setEstadoMats(int Estate){this->EstadoMaterial = Estate;}
+void MaterialDigital::setFormato(string format) {this->formato  =format;}
+void MaterialDigital::setAccessoHabilitado(bool bol) {this->accesoHabilitado = bol;}
 
+
+
+//---------------------------------------------------------
 ostream& operator<<(ostream& os, const Material& material) {
     os << material.toString();
     return os;

@@ -33,6 +33,9 @@ public:
     string getNombre();
     string getNombreCompleto();
     bool getEstado();
+    void setIdentificacion(string);
+    void setNombre(string);
+    void setApellidos(string);
     void setEstado(int);
     string toString() const;
 };

@@ -33,9 +33,9 @@ public:
     Material* getMaterial();
     string getFechaPrestamo();
     string getFechaDevolucion();
-    string toString();
+    string toString() const;
 };
-
+ostream& operator<<(ostream& output, const Prestamo& p);
 
 
 #endif //PRESTAMO_H

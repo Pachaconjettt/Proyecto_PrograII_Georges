@@ -32,6 +32,7 @@ public:
     bool esVacia() const;
     void agregar(T* dato);
     void eliminarInicio();
+    void eliminar(T* dato);
     void eliminarPos(int pos);
     Nodo<T>* getNodoEsp(int pos);
     //-------------------------------------------------------------------
@@ -55,6 +56,32 @@ int Lista<T>::getSize() {return size;}
 template<typename T>
 bool Lista<T>::esVacia() const {return primero == NULL; }
 
+template <typename T>
+void Lista<T>::eliminar(T* dato) {
+    if (esVacia()) {
+        throw std::runtime_error("La lista está vacía.");
+    }
+
+    Nodo<T>* actual = primero;
+    Nodo<T>* anterior = nullptr;
+
+    while (actual != nullptr) {
+        if (actual->getDato() == dato) { // Match found
+            if (anterior == nullptr) { // The node to delete is the first node
+                primero = actual->getSig();
+            } else { // The node to delete is in the middle or end
+                anterior->setSig(actual->getSig());
+            }
+            delete actual;
+            size--;
+            return;
+        }
+        anterior = actual;
+        actual = actual->getSig();
+    }
+
+    throw std::runtime_error("El objeto no se encontró en la lista.");
+}
 template <typename T>
 void Lista<T>::agregar(T* dato){
     Nodo<T>* nuevo = new Nodo<T>(dato);

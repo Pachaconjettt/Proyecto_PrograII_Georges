@@ -22,6 +22,9 @@ string Usuario::getIdentificacion(){return identificacion;}
 string Usuario::getNombre() {return this->nombre;}
 string Usuario::getNombreCompleto(){return nombre + " " + apellidos;}
 bool Usuario::getEstado(){return this->estado;}
+void Usuario::setIdentificacion(string id){this->identificacion = id;}
+void Usuario::setNombre(string name){this->nombre = name;}
+void Usuario::setApellidos(string apellidos){this->apellidos = apellidos;}
 void Usuario::setEstado(int estates){this->estado = estates;}
 //------------------------------------------------------------------------------
 string Usuario::toString()const {
