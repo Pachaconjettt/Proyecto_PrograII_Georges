@@ -15,7 +15,7 @@
 
 #include "Material.h"
 Material::Material(string NumC,string NumCata,string Titulo,string Autors,string Keyw, int EstadoMats)
-    : NumClasificacion(NumC), Titulo(Titulo), Autores(Autors), Palabra_s_clave(Keyw), EstadoMaterial(EstadoMats){}
+    : NumClasificacion(NumC),NumCatalogo(NumCata),Titulo(Titulo), Autores(Autors), Palabra_s_clave(Keyw), EstadoMaterial(EstadoMats){}
 
 Material::Material(): NumClasificacion(""), NumCatalogo(""), Titulo(""), Autores(""),Palabra_s_clave(""), EstadoMaterial(0){}
 
