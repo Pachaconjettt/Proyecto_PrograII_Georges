@@ -65,17 +65,93 @@ void Biblioteca::menu() {
         system("cls");
         switch (opcion) {
             case 1:
+                system("cls");
                 InclusionDatosMats();
+                cin.ignore();
+                cin.get();
             break;
+            case 2:
+                system ("cls");
+                ReporteDeMats();
+                cin.ignore();
+                cin.get();
         }
     } while (opcion != 6);
+    system("cls");
 }
 
 void Biblioteca::InclusionDatosMats() {
-    system("cls");
-    cout << "Ingresa el nombre del material" << endl;
+    int tipoMaterial;
+    cout << "Seleccione el tipo de material\n";
+    cout << "1. Libro\n";
+    cout << "2. Revista\n";
+
+    cout << "3. Material Digital\n";
+    cout << "Opcion: ";
+    cin >> tipoMaterial;
+
+    string NumClasificacion, NumCatalogo, Titulo, Autores, PalabrasClave;
+    int EstadoMats;
+
+    //Atributos especificos
+    string ubicacionFisica, formato;
+    int numero, volumen;
+    bool accessH;
+
+    cout << "Ingrese el número de clasificación: ";
+    cin >> NumClasificacion;
+    cout << "Ingrese el número de catálogo: ";
+    cin >> NumCatalogo;
+    cout << "Ingrese el título: ";
+    cin.ignore();
+    getline(cin, Titulo);
+    cout << "Ingrese los autores: ";
+    getline(cin, Autores);
+    cout << "Ingrese las palabras clave: ";
+    getline(cin, PalabrasClave);
+    cout << "Ingrese el estado del material (1:Buen estado, 2: Minimo de daños, 3:Mal Estado): ";
+    cin >> EstadoMats;
+
+    Material* nuevoMaterial = nullptr;
+
+    switch (tipoMaterial) {
+        case 1: //Libro
+            cout << "Ingrese la ubicacion fisica: ";
+            cin.ignore();
+            getline(cin, ubicacionFisica);
+            nuevoMaterial = new Libro(NumClasificacion, NumCatalogo,Titulo,Autores,PalabrasClave,EstadoMats,ubicacionFisica);
+            break;
+        case 2: //Revista
+            cout << "Ingrese la ubicacion fisica: ";
+            cin.ignore();
+            getline(cin, ubicacionFisica);
+            cout << "Ingrese el número: ";
+            cin >> numero;
+            cout << "Ingrese el volumen: ";
+            cin >> volumen;
+            nuevoMaterial = new Revista(NumClasificacion, NumCatalogo,Titulo,Autores,PalabrasClave,EstadoMats,ubicacionFisica,numero,volumen);
+            break;
+        case 3: // Material Digital;
+            cout << "Ingrese el formato: ";
+            cin.ignore();
+            getline(cin, formato);
+            cout << "¿El acceso está habilitado? (1 = sí, 0 = no): ";
+            cin >> accessH;
+            nuevoMaterial = new MaterialDigital(NumClasificacion, NumCatalogo, Titulo, Autores, PalabrasClave, EstadoMats, formato, accessH);
+            break;
+        default:
+            cout << "Opción no válida." << endl;
+            return;
+    }
+    if (nuevoMaterial != nullptr) {
+        mats->agregarMaterial(nuevoMaterial);
+        cout << "Material agregado exitosamente" << endl;
+    }
 }
 
 
 
-
+void Biblioteca::ReporteDeMats() {
+cout << "\t\t\t Reporte de inventario de materiales \t\t\t" << endl;
+    cout << mats->toString() << endl ;
+}

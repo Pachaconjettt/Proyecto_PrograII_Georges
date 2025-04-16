@@ -37,7 +37,7 @@ public:
     void menu();
     //-------------------------------
     void InclusionDatosMats();
-
+    void  ReporteDeMats();
 };
 
 
