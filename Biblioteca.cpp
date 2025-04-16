@@ -74,23 +74,29 @@ void Biblioteca::menu() {
             break;
             case 2:
                 system("cls");
-                void ModificarDatosMats();
+                ModificarDatosMats();
                 cin.ignore();
                 cin.get();
             break;
             case 3:
                 system("cls");
-                void InclusionUsuarios();
+                InclusionUsuarios();
                 cin.ignore();
                 cin.get();
             break;
             case 4:
                 system("cls");
-                void ModificacionUsuario();
+                ModificacionUsuario();
+                cin.ignore();
+                cin.get();
             break;
             case 5:
                 system("cls");
-                void RegistroPrestaYDevo();
+                RegistroPrestaYDevo();
+                cin.ignore();
+                cin.get();
+
+
             case 6:
                 system ("cls");
                 ReporteDeMats();
