@@ -48,6 +48,9 @@ public:
     virtual void setAutores(string) = 0;
     virtual void setPalabras(string) = 0;
     virtual void setEstadoMats(int) = 0;
+    virtual string getTipo() = 0;
+    virtual Material* getMaterial() = 0;
+
 };
 
 //------------------------------------------------------------------
@@ -73,6 +76,8 @@ public:
     virtual void setAutores(string) override;
     virtual void setPalabras(string) override;
     virtual void setEstadoMats(int)  override;
+    virtual string getTipo() override;
+    virtual Material* getMaterial() override;
     void setUbicacionFisica(string);
 };
 
@@ -101,6 +106,8 @@ public:
     virtual void setAutores(string) override;
     virtual void setPalabras(string) override;
     virtual void setEstadoMats(int)  override;
+    virtual string getTipo() override;
+    virtual Material* getMaterial() override;
     void setUbicacionFisica(string);
     void setNumero(int);
     void setVolumen(int);
@@ -130,6 +137,8 @@ public:
     virtual void setAutores(string) override;
     virtual void setPalabras(string) override;
     virtual void setEstadoMats(int)  override;
+    virtual string getTipo() override;
+    virtual Material* getMaterial() override;
     void setFormato(string);
     void setAccessoHabilitado(bool);
 };

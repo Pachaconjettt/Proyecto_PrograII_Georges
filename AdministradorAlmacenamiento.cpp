@@ -37,17 +37,18 @@ void AdministradorAlmacenamiento::guardarMateriales(ListaMateriales* _lis) {
     cout << "Materiales guardados correctamente." << endl;
 }
 void AdministradorAlmacenamiento::guardarUsuarios(ListaUsuarios* _lis) {
-    salida.open("Usuarios.txt");
-    if (salida.good()) {
+    salidaAux.open("Usuarios.txt");
+    if (salidaAux.good()) {
         Nodo<Usuario>* aux = _lis->getLista()->getNodoEsp(0);
         while (aux) {
-            salida << aux->getDato()->getIdentificacion() << "\t";
-            salida << aux->getDato()->getNombre()  << "\t";
-            salida << aux->getDato()->getEstado() << "\n";
+            salidaAux << aux->getDato()->getIdentificacion() << "\t";
+            salidaAux << aux->getDato()->getNombre()  << "\t";
+            salidaAux << aux->getDato()->getApellidos() << "\t";
+            salidaAux << aux->getDato()->getEstado() << "\n";
             aux = aux->getSig();
         }
     }
-    salida.close();
+    salidaAux.close();
 }
 void AdministradorAlmacenamiento::guardarPrestamos(ListaPrestamos* _lis) {
     salida.open("Prestamos.txt");
@@ -93,23 +94,49 @@ void AdministradorAlmacenamiento::guardarGestor(GestorPrestamos* gestor, const s
 ListaMateriales* AdministradorAlmacenamiento::recuperarMateriales() {
     ListaMateriales* listaAux = new ListaMateriales();
     entrada.open("Materiales.txt");
-    if (entrada.good()) {
-        string tipo, numClasificacion, numCatalogo, titulo, autores, palabrasClave, estadoMaterial, ubicacionFisica, formato, accesoHabilitado;
-        string estado, numero, volumen;
-        while (entrada >> tipo) {
-            if (tipo == "1") { // Libro
-                entrada >> numClasificacion >> numCatalogo >> titulo >> autores >> palabrasClave >> estado >> ubicacionFisica;
-                Libro* libro = new Libro(numClasificacion, numCatalogo, titulo, autores, palabrasClave, convertirInt(estado), ubicacionFisica);
-                listaAux->agregarMaterial(libro);
-            } else if (tipo == "2") { // Revista
-                entrada >> numClasificacion >> numCatalogo >> titulo >> autores >> palabrasClave >> estado >> ubicacionFisica >> numero >> volumen;
-                Revista* revista = new Revista(numClasificacion, numCatalogo, titulo, autores, palabrasClave, convertirInt(estado), ubicacionFisica, convertirInt(numero), convertirInt(volumen));
-                listaAux->agregarMaterial(revista);
-            } else if (tipo == "3") { // MaterialDigital
-                entrada >> numClasificacion >> numCatalogo >> titulo >> autores >> palabrasClave >> estado >> formato >> accesoHabilitado;
-                MaterialDigital* materialDigital = new MaterialDigital(numClasificacion, numCatalogo, titulo, autores, palabrasClave, convertirInt(estado), formato, convertirBool(accesoHabilitado));
-                listaAux->agregarMaterial(materialDigital);
+    string NumC, NumCata, Titulo, Autors, Palabras_s;
+    string EstadoMat, numero, volumen;
+    string Ubicacion,format;
+    string accessH; // bool
+    string tipo; // para comparar
+    while (entrada >> tipo) {
+        if (tipo == "1" ) {
+            getline(entrada, NumC, '\t');
+            getline(entrada, NumCata, '\t');
+            getline(entrada, Titulo, '\t');
+            getline(entrada, Autors, '\t');
+            getline(entrada,Palabras_s, '\t');
+            getline(entrada, EstadoMat, '\t');
+            getline(entrada, Ubicacion, '\n');
+            if (!NumC.empty() && !NumCata.empty() && !Titulo.empty() && !Autors.empty() && !Palabras_s.empty() && !EstadoMat.empty() && !Ubicacion.empty()) {
+                Libro* book = new Libro(NumC,NumCata,Titulo,Autors,Palabras_s, convertirInt(EstadoMat), Ubicacion);
+                listaAux->agregarMaterial(book);
             }
+        }
+        else if (tipo == "2") {
+            getline(entrada, NumC, '\t');
+            getline(entrada, NumCata, '\t');
+            getline(entrada, Titulo, '\t');
+            getline(entrada, Autors, '\t');
+            getline(entrada,Palabras_s, '\t');
+            getline(entrada, EstadoMat, '\t');
+            getline(entrada, Ubicacion, '\t');
+            getline(entrada, numero, '\t');
+            getline(entrada, volumen, '\n');
+            Revista* magazine = new Revista(NumC,NumCata,Titulo,Autors,Palabras_s, convertirInt(EstadoMat), Ubicacion,convertirInt(numero),convertirInt(volumen));
+            listaAux->agregarMaterial(magazine);
+        }
+        else if (tipo == "3") {
+            getline(entrada, NumC, '\t');
+            getline(entrada, NumCata, '\t');
+            getline(entrada, Titulo, '\t');
+            getline(entrada, Autors, '\t');
+            getline(entrada,Palabras_s, '\t');
+            getline(entrada, EstadoMat, '\t');
+            getline(entrada, format, '\t');
+            getline(entrada, volumen, '\n');
+            MaterialDigital* matDigital = new MaterialDigital(NumC,NumCata,Titulo,Autors,Palabras_s, convertirInt(EstadoMat), format, convertirBool(accessH));
+            listaAux->agregarMaterial(matDigital);
         }
     }
     entrada.close();
@@ -117,26 +144,22 @@ ListaMateriales* AdministradorAlmacenamiento::recuperarMateriales() {
 }
 ListaUsuarios* AdministradorAlmacenamiento::recuperarUsuarios() {
     ListaUsuarios* listaAux = new ListaUsuarios();
-    entrada.open("Usuarios.txt");
-    if (!entrada.is_open()) {
-        std::cerr << "Error: No se pudo abrir el archivo Usuarios.txt para lectura." << std::endl;
-        return listaAux; // Return an empty list
-    }
-
-    std::string identificacion, nombre, apellidos, estado;
-    while (std::getline(entrada, identificacion, '\t') &&
-           std::getline(entrada, nombre, '\t') &&
-           std::getline(entrada, apellidos, '\t') &&
-           std::getline(entrada, estado, '\n')) {
-        if (!identificacion.empty() && !nombre.empty() && !apellidos.empty() && !estado.empty()) {
-            Usuario* eldep = new Usuario(identificacion, nombre, apellidos, convertirInt(estado));
-            listaAux->agregarUsuario(eldep);
-        } else {
-            std::cerr << "Advertencia: Datos incompletos en la línea actual. Saltando..." << std::endl;
+    entradaAux.open("Usuarios.txt");
+    string ID, name, apellidos;
+    string estado;
+    Usuario* eldep = nullptr;
+    while (entradaAux.good()) {
+        getline(entradaAux,ID, '\t');
+        getline(entradaAux, name, '\t');
+        getline(entradaAux, apellidos, '\t');
+        getline(entradaAux, estado, '\n');
+        if (!ID.empty() && !name.empty() && !apellidos.empty() && !estado.empty()) {
+            eldep = new Usuario(ID, name,apellidos, convertirBool(estado));
         }
-           }
-
-    entrada.close();
+        if (entradaAux.good() && eldep)
+            listaAux->agregarUsuario(eldep);
+    }
+    entradaAux.close();
     return listaAux;
 }
 ListaPrestamos* AdministradorAlmacenamiento::recuperarPrestamos(ListaUsuarios* usuarios, ListaMateriales* materiales) {

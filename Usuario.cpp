@@ -22,6 +22,7 @@ string Usuario::getIdentificacion(){return identificacion;}
 string Usuario::getNombre() {return this->nombre;}
 string Usuario::getNombreCompleto(){return nombre + " " + apellidos;}
 bool Usuario::getEstado(){return this->estado;}
+string Usuario::getApellidos() {return this->apellidos;}
 void Usuario::setIdentificacion(string id){this->identificacion = id;}
 void Usuario::setNombre(string name){this->nombre = name;}
 void Usuario::setApellidos(string apellidos){this->apellidos = apellidos;}

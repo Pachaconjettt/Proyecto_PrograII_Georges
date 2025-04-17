@@ -49,6 +49,10 @@ string Libro::getNombre()  {return this->Titulo;}
 
 int Libro::getEstadoMaterial() {return this->EstadoMaterial;}
 
+string Libro::getTipo() {
+    return "Libro";
+}
+
 void Libro::setNumClasificacion(string numC){this->NumClasificacion = numC;}
 void Libro::setNumCatalogo(string NumC){this->NumCatalogo = NumC;}
 void Libro::setTitulo(string Titulo){this->Titulo = Titulo;}
@@ -67,6 +71,9 @@ string Libro::toString() const {
     s << "Estado del material(1:Buen estado, 2: Minimo de daños, 3:Mal Estado)" << EstadoMaterial << endl;
     s << "Ubicacion del libro :" << ubicacionFisica << endl;
     return s.str();
+}
+Material* Libro::getMaterial() {
+    return this;
 }
 //-------------------------------------------------------------------------
 
@@ -96,7 +103,9 @@ string Revista::getNumClasificacion(){return this->NumClasificacion;}
 string Revista::getAutores() {return this->Autores;}
 string Revista::getPalabrasClave(){return this->Palabra_s_clave;}
 string Revista::getNumCatalogo() { return this->NumCatalogo;}
-
+string Revista::getTipo() {
+    return "Revista";
+}
 string Revista::getNombre()  {return this->Titulo;}
 int Revista::getEstadoMaterial() {return this->EstadoMaterial;}
 void Revista::setNumClasificacion(string numC){this->NumClasificacion = numC;}
@@ -122,6 +131,9 @@ string Revista::toString() const {
     s << "Numero de revista :" << numero << endl;
     s << "Volumen de la revista: " << volumen << endl;
     return s.str();
+}
+Material* Revista::getMaterial() {
+    return this;
 }
 //-----------------------------------------------------------------------
 
@@ -173,8 +185,12 @@ void MaterialDigital::setPalabras(string words){this->Palabra_s_clave = words;}
 void MaterialDigital::setEstadoMats(int Estate){this->EstadoMaterial = Estate;}
 void MaterialDigital::setFormato(string format) {this->formato  =format;}
 void MaterialDigital::setAccessoHabilitado(bool bol) {this->accesoHabilitado = bol;}
-
-
+string MaterialDigital::getTipo() {
+    return "MaterialDigital";
+}
+Material* MaterialDigital::getMaterial() {
+    return this;
+}
 
 //---------------------------------------------------------
 ostream& operator<<(ostream& os, const Material& material) {

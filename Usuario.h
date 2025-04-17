@@ -32,6 +32,7 @@ public:
     string getIdentificacion();
     string getNombre();
     string getNombreCompleto();
+    string getApellidos();
     bool getEstado();
     void setIdentificacion(string);
     void setNombre(string);
