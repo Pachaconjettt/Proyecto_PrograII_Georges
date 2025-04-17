@@ -28,6 +28,7 @@ private:
 public:
     GestorPrestamos(ListaUsuarios*,ListaMateriales*);
     ~GestorPrestamos();
+    ListaPrestamos* getListaPrestamos();
     void registrarPrestamo(string& idUsuario, string& numCatalogo, const string& FechaPrestamo);
     void registrarDevolucion( const string& numCatalogo);
     void reportePrestamo() const;

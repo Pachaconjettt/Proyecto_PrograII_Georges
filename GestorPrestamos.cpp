@@ -19,6 +19,7 @@ listaPrestamos = new ListaPrestamos();
 GestorPrestamos::~GestorPrestamos() {
     delete listaPrestamos;
 }
+ListaPrestamos* GestorPrestamos::getListaPrestamos(){return listaPrestamos;}
 void GestorPrestamos::registrarPrestamo(string &idUsuario, string &numCatalogo, const string &FechaPrestamo) {
     Usuario* Usuario = usuarios->getUsuario(idUsuario);
     Material* material = materiales->getMaterialEsp(numCatalogo);

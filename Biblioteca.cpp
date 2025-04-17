@@ -58,7 +58,7 @@ void Biblioteca::menu() {
         cin >> opcion;
 
         try {
-            IntOutRange(1, 9, opcion, yes);
+            IntOutRange(1, 10, opcion, yes);
         } catch (invalid_argument &e) {
             system("cls");
             cout << e.what() << "\n" << endl;
@@ -131,6 +131,7 @@ void Biblioteca::menu() {
                 guardarDatos();
                 cin.ignore();
                 cin.get();
+            break;
         }
     } while (opcion != 11);
     system("cls");
@@ -484,14 +485,31 @@ void Biblioteca::ReportePrestamosXusuario() {
 }
 
 void Biblioteca::guardarDatos() {
+    cout << "Guardando datos..." << endl;
+
     // Save materials
-    archivos->guardarMateriales(mats);
+    if (mats) {
+        cout << "Guardando materiales..." << endl;
+        archivos->guardarMateriales(mats);
+    } else {
+        cerr << "Error: No hay materiales para guardar." << endl;
+    }
 
     // Save users
-    archivos->guardarUsuarios(usuarios);
+    if (usuarios) {
+        cout << "Guardando usuarios..." << endl;
+        archivos->guardarUsuarios(usuarios);
+    } else {
+        cerr << "Error: No hay usuarios para guardar." << endl;
+    }
 
     // Save loans
-    archivos->guardarPrestamos(prestamos);
+    if (prestamos) {
+        cout << "Guardando préstamos..." << endl;
+        archivos->guardarGestor(gestor,"GestorPrestamos.txt");
+    } else {
+        cerr << "Error: No hay préstamos para guardar." << endl;
+    }
 
     // Confirmation message
     cout << "Los datos han sido guardados exitosamente." << endl;

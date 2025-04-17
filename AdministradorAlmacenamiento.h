@@ -41,9 +41,11 @@ public:
     void guardarMateriales(ListaMateriales*);
     void guardarUsuarios(ListaUsuarios*);
     void guardarPrestamos(ListaPrestamos*);
+    void guardarGestor(GestorPrestamos* , const std::string& filename);
     ListaMateriales * recuperarMateriales() ;
     ListaUsuarios * recuperarUsuarios();
     ListaPrestamos * recuperarPrestamos(ListaUsuarios* usuarios, ListaMateriales* materiales) ;
+    GestorPrestamos * recuperarGestor(GestorPrestamos* gestor, ListaUsuarios* usuarios, ListaMateriales* materiales, const std::string& filename);
 };
 
 

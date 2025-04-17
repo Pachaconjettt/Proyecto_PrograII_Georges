@@ -15,18 +15,29 @@
 #include "AdministradorAlmacenamiento.h"
 AdministradorAlmacenamiento::AdministradorAlmacenamiento() {}
 void AdministradorAlmacenamiento::guardarMateriales(ListaMateriales* _lis) {
-    salida.open("Archivos/Materiales.txt");
-    if (salida.good()) {
-        Nodo<Material>* aux = _lis->getLista()->getNodoEsp(0);
-        while (aux) {
-            aux->getDato()->guardar(salida); //Polimorfico
-            aux = aux->getSig();
-        }
+    salida.open("Materiales.txt");
+    if (!salida.is_open()) {
+        cerr << "Error: No se pudo abrir el archivo Materiales.txt para escritura." << endl;
+        return;
     }
+
+    Nodo<Material>* aux = _lis->getLista()->getNodoEsp(0);
+    while (aux) {
+        Material* material = aux->getDato();
+        if (material) {
+            material->guardar(salida); // Polymorphic save
+            cout << "Guardando material: " << material->toString() << endl; // Debugging output
+        } else {
+            cerr << "Error: Nodo con material nulo." << endl;
+        }
+        aux = aux->getSig();
+    }
+
     salida.close();
+    cout << "Materiales guardados correctamente." << endl;
 }
 void AdministradorAlmacenamiento::guardarUsuarios(ListaUsuarios* _lis) {
-    salida.open("Archivos/Usuarios.txt");
+    salida.open("Usuarios.txt");
     if (salida.good()) {
         Nodo<Usuario>* aux = _lis->getLista()->getNodoEsp(0);
         while (aux) {
@@ -39,7 +50,7 @@ void AdministradorAlmacenamiento::guardarUsuarios(ListaUsuarios* _lis) {
     salida.close();
 }
 void AdministradorAlmacenamiento::guardarPrestamos(ListaPrestamos* _lis) {
-    salida.open("Archivos/Prestamos.txt");
+    salida.open("Prestamos.txt");
     if (salida.good()) {
         Nodo <Prestamo>* aux = _lis->getLista()->getNodoEsp(0);
         while (aux) {
@@ -52,9 +63,36 @@ void AdministradorAlmacenamiento::guardarPrestamos(ListaPrestamos* _lis) {
     }
     salida.close();
 }
+void AdministradorAlmacenamiento::guardarGestor(GestorPrestamos* gestor, const std::string& filename) {
+    if (!gestor) {
+        std::cerr << "Error: El gestor es nulo." << std::endl;
+        return;
+    }
+
+    std::ofstream salida(filename);
+    if (!salida.is_open()) {
+        std::cerr << "Error: No se pudo abrir el archivo " << filename << " para escritura." << std::endl;
+        return;
+    }
+
+    Nodo<Prestamo>* aux = gestor->getListaPrestamos()->getLista()->getNodoEsp(0); // Get the first node
+    while (aux) {
+        Prestamo* prestamo = aux->getDato();
+        if (prestamo) {
+            salida << prestamo->getUsuario()->getIdentificacion() << "\t"
+                   << prestamo->getMaterial()->getNumCatalogo() << "\t"
+                   << prestamo->getFechaPrestamo() << "\t"
+                   << prestamo->getFechaDevolucion() << "\n";
+        }
+        aux = aux->getSig(); // Move to the next node
+    }
+
+    salida.close();
+    std::cout << "Datos del gestor guardados correctamente en " << filename << "." << std::endl;
+}
 ListaMateriales* AdministradorAlmacenamiento::recuperarMateriales() {
     ListaMateriales* listaAux = new ListaMateriales();
-    entrada.open("Archivos/Materiales.txt");
+    entrada.open("Materiales.txt");
     if (entrada.good()) {
         string tipo, numClasificacion, numCatalogo, titulo, autores, palabrasClave, estadoMaterial, ubicacionFisica, formato, accesoHabilitado;
         string estado, numero, volumen;
@@ -77,29 +115,33 @@ ListaMateriales* AdministradorAlmacenamiento::recuperarMateriales() {
     entrada.close();
     return listaAux;
 }
-ListaUsuarios * AdministradorAlmacenamiento::recuperarUsuarios() {
- ListaUsuarios* listaAux = new ListaUsuarios();
- entrada.open("Archivos/Usuarios.txt");
-    string identificacion, nombre, apellidos;
-    string estado;
-    Usuario* eldep = nullptr;
-    while (entrada.good()) {
-        getline(entrada, identificacion, '\t');
-        getline(entrada, nombre, '\t');
-        getline(entrada, apellidos, '\t');
-        getline(entrada, estado, '\n');
-        if (!identificacion.empty() && !nombre.empty() && !apellidos.empty() && !estado.empty()) {
-            eldep = new Usuario(identificacion, nombre, apellidos, convertirInt(estado));
-        }
-        if (entrada.good() && eldep)
-            listaAux->agregarUsuario(eldep);
+ListaUsuarios* AdministradorAlmacenamiento::recuperarUsuarios() {
+    ListaUsuarios* listaAux = new ListaUsuarios();
+    entrada.open("Usuarios.txt");
+    if (!entrada.is_open()) {
+        std::cerr << "Error: No se pudo abrir el archivo Usuarios.txt para lectura." << std::endl;
+        return listaAux; // Return an empty list
     }
+
+    std::string identificacion, nombre, apellidos, estado;
+    while (std::getline(entrada, identificacion, '\t') &&
+           std::getline(entrada, nombre, '\t') &&
+           std::getline(entrada, apellidos, '\t') &&
+           std::getline(entrada, estado, '\n')) {
+        if (!identificacion.empty() && !nombre.empty() && !apellidos.empty() && !estado.empty()) {
+            Usuario* eldep = new Usuario(identificacion, nombre, apellidos, convertirInt(estado));
+            listaAux->agregarUsuario(eldep);
+        } else {
+            std::cerr << "Advertencia: Datos incompletos en la línea actual. Saltando..." << std::endl;
+        }
+           }
+
     entrada.close();
     return listaAux;
 }
 ListaPrestamos* AdministradorAlmacenamiento::recuperarPrestamos(ListaUsuarios* usuarios, ListaMateriales* materiales) {
     ListaPrestamos* listaAux = new ListaPrestamos();
-    entrada.open("Archivos/Prestamos.txt");
+    entrada.open("Prestamos.txt");
     if (entrada.good()) {
         string userId, materialId, fechaPrestamo, fechaDevolucion;
         while (entrada >> userId >> materialId >> fechaPrestamo >> fechaDevolucion) {
@@ -113,4 +155,33 @@ ListaPrestamos* AdministradorAlmacenamiento::recuperarPrestamos(ListaUsuarios* u
     }
     entrada.close();
     return listaAux;
+}
+GestorPrestamos* AdministradorAlmacenamiento::recuperarGestor(GestorPrestamos* gestor, ListaUsuarios* usuarios, ListaMateriales* materiales, const std::string& filename) {
+    if (!gestor || !usuarios || !materiales) {
+        std::cerr << "Error: El gestor, usuarios o materiales son nulos." << std::endl;
+        return nullptr;
+    }
+
+    std::ifstream entrada(filename);
+    if (!entrada.is_open()) {
+        std::cerr << "Error: No se pudo abrir el archivo " << filename << " para lectura." << std::endl;
+        return nullptr;
+    }
+
+    std::string userId, materialId, fechaPrestamo, fechaDevolucion;
+    while (entrada >> userId >> materialId >> fechaPrestamo >> fechaDevolucion) {
+        Usuario* user = usuarios->getUsuario(userId); // Retrieve user by ID
+        Material* material = materiales->getMaterialEsp(materialId); // Retrieve material by catalog number
+
+        if (user && material) {
+            Prestamo* prestamo = new Prestamo(user, material, fechaPrestamo, fechaDevolucion);
+            gestor->getListaPrestamos()->nuevoPrestamo(prestamo); // Add the loan to the gestor
+        } else {
+            std::cerr << "Advertencia: Usuario o material no encontrado para el préstamo." << std::endl;
+        }
+    }
+
+    entrada.close();
+    std::cout << "Datos del gestor recuperados correctamente desde " << filename << "." << std::endl;
+    return gestor;
 }
