@@ -30,7 +30,7 @@ void Biblioteca::menu() {
     bool yes = true;
     int opcion;
     ManejoArchivos* m = new ManejoArchivos;
-    cout << m->Logo() << endl;
+    cout << m->Logo() << endl; // Este logo solo sirve si uno usa la forma de que todo los documentos este en la misma root(raiz del programa) que es algo que uno tiene que modificar en su propio editor/compilador
     system("pause");
     system("cls");
 
@@ -95,7 +95,7 @@ void Biblioteca::menu() {
                 RegistroPrestaYDevo();
                 cin.ignore();
                 cin.get();
-
+            break;
 
             case 6:
                 system ("cls");
@@ -103,22 +103,27 @@ void Biblioteca::menu() {
                 cin.ignore();
                 cin.get();
             break;
+
             case 7:
                 system("cls");
                 ReporteUsuarios();
                 cin.ignore();
                 cin.get();
             break;
+
             case 8:
                 system("cls");
                 ReportePrestamo();
                 cin.ignore();
                 cin.get();
+            break;
+
             case 9:
                 system("cls");
                 ReportePrestamosXusuario();
                 cin.ignore();
                 cin.get();
+            break;
         }
     } while (opcion != 9);
     system("cls");
@@ -195,6 +200,8 @@ void Biblioteca::InclusionDatosMats() {
 
 void Biblioteca::ModificarDatosMats() {
     string numCatalogo;
+    cout << "Materiales registrados en el programa" << endl;
+    cout << mats->toString() << endl;
     cout << "Ingrese el número de catálogo del material a modificar: ";
     cin >> numCatalogo;
 
@@ -316,7 +323,6 @@ void Biblioteca::ModificarDatosMats() {
 void Biblioteca::InclusionUsuarios() {
     string identificacion, nombre, apellidos;
     int estado;
-
     cout << "Ingrese la identificación del usuario: ";
     cin >> identificacion;
     cout << "Ingrese el nombre del usuario: ";
@@ -343,6 +349,8 @@ void Biblioteca::InclusionUsuarios() {
 }
 void Biblioteca::ModificacionUsuario() {
     string identificacion;
+    cout << "Usuarios registrados en el programa :" << endl;
+    cout << usuarios->toString() << endl;
     cout << "Ingrese la identificación del usuario a modificar: ";
     cin >> identificacion;
 
@@ -410,6 +418,8 @@ void Biblioteca::RegistroPrestaYDevo() {
 
         switch (opcion) {
             case 1: {
+                cout << "Usuarios registrados en el programa" << endl;
+                cout << usuarios->toString() << endl;
                 string idUsuario, numCatalogo, fechaPrestamo;
                 cout << "Ingrese el ID del usuario: ";
                 cin >> idUsuario;
@@ -423,6 +433,8 @@ void Biblioteca::RegistroPrestaYDevo() {
             }
             case 2: {
                 string numCatalogo;
+                cout << "Materiales registrados en el programa" << endl;
+                cout << mats->toString() << endl;
                 cout << "Ingrese el número de catálogo del material: ";
                 cin >> numCatalogo;
 

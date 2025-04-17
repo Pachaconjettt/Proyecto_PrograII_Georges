@@ -33,6 +33,7 @@ string Usuario::toString()const {
     s << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n" << endl;
 
     s << "- Nombre: " << nombre << endl;
+    s << "- Apellidos: " << apellidos << endl;
     s << "- C" << char(130) << "dula: " << identificacion << endl;
     s << "- Estado: ";
     switch (estado)	{
