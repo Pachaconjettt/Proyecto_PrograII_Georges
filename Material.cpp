@@ -32,8 +32,17 @@ void Libro::prestar() {
     cout << "Prestando libro. Máximo de 7 dias" << endl;
 }
 void Libro::guardar(ofstream& out)  {
-out  <<"Libro;"<< NumClasificacion << ";" << NumCatalogo << ";" << Titulo << ";" << Autores << ";" << Palabra_s_clave << ";" << EstadoMaterial << ";" << ubicacionFisica << "\n";
+    out   << NumClasificacion << "\t"
+          << NumCatalogo << "\t"
+          << Titulo << "\t"
+          << Autores << "\t"
+          << Palabra_s_clave<< "\t"
+          << EstadoMaterial << "\t"
+          << ubicacionFisica << "\n";
 }
+string Libro::getNumClasificacion(){return this->NumClasificacion;}
+string Libro::getAutores() {return this->Autores;}
+string Libro::getPalabrasClave(){return this->Palabra_s_clave;}
 string Libro::getNumCatalogo() { return this->NumCatalogo;}
 
 string Libro::getNombre()  {return this->Titulo;}
@@ -73,9 +82,19 @@ void Revista::prestar() {
 }
 
 void Revista::guardar(ofstream& out)  {
-    out << "Revista;" << NumClasificacion << ";" << NumCatalogo << ";" << Titulo << ";" <<Autores << ";" << Palabra_s_clave << ";" << EstadoMaterial <<";"<<UbicacionFisica << ";" << numero << ";" << volumen << "\n";
+    out   << NumClasificacion << "\t"
+          << NumCatalogo << "\t"
+          << Titulo << "\t"
+          << Autores << "\t"
+          << Palabra_s_clave<< "\t"
+          << EstadoMaterial << "\t"
+          << UbicacionFisica << "\t"
+          << numero << "\t"
+          << volumen << "\n";
 }
-
+string Revista::getNumClasificacion(){return this->NumClasificacion;}
+string Revista::getAutores() {return this->Autores;}
+string Revista::getPalabrasClave(){return this->Palabra_s_clave;}
 string Revista::getNumCatalogo() { return this->NumCatalogo;}
 
 string Revista::getNombre()  {return this->Titulo;}
@@ -118,9 +137,18 @@ void MaterialDigital::prestar() {
 }
 
 void MaterialDigital::guardar(ofstream & out) {
-    out << "Digital;" << NumClasificacion << ";" << NumCatalogo << ";" << Titulo << ";" << Autores << ";" << Palabra_s_clave << ";" << EstadoMaterial << ";" << formato << ";" << accesoHabilitado << "\n";
+    out<< NumClasificacion << "\t"
+       << NumCatalogo << "\t"
+       << Titulo << "\t"
+       << Autores << "\t"
+       << Palabra_s_clave<< "\t"
+       << EstadoMaterial << "\t"
+       << formato << "\t"
+       << accesoHabilitado << "\n";
 }
-
+string MaterialDigital::getNumClasificacion(){return this->NumClasificacion;}
+string MaterialDigital::getAutores() {return this->Autores;}
+string MaterialDigital::getPalabrasClave(){return this->Palabra_s_clave;}
 string MaterialDigital::getNumCatalogo() { return this->NumCatalogo;}
 
 string MaterialDigital::getNombre() {return this->Titulo;}

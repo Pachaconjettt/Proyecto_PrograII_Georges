@@ -28,4 +28,6 @@ add_executable(Proyecto_PrograII_Georges main.cpp
         ListaPrestamos.cpp
         ListaPrestamos.h
         GestorPrestamos.cpp
-        GestorPrestamos.h)
+        GestorPrestamos.h
+        AdministradorAlmacenamiento.cpp
+        AdministradorAlmacenamiento.h)

@@ -15,10 +15,11 @@
 #include "Biblioteca.h"
 #include "Excepciones.h"
 Biblioteca::Biblioteca() {
+    archivos = new AdministradorAlmacenamiento();
     nombre  = " ";
-    usuarios = new ListaUsuarios;
-    mats = new ListaMateriales;
-    prestamos = new ListaPrestamos;
+    usuarios = archivos->recuperarUsuarios();
+    mats = archivos->recuperarMateriales();
+    prestamos = archivos->recuperarPrestamos(usuarios, mats);
     gestor = new GestorPrestamos(usuarios, mats);
     currentDate =  new Fecha;
 }
@@ -51,6 +52,7 @@ void Biblioteca::menu() {
         cout << "\n7. Reporte de usuarios" << endl;
         cout << "\n8. Reporte de materiales en préstamo (general y por tipo de material)" << endl;
         cout << "\n9. Reporte de préstamos por usuario" << endl;
+        cout << "\n10. Guardar Datos" << endl;
         cout << "\n_._._._._._._._._._._._._._._._._._._._\n" << endl;
         cout << "\nDigite una opcion: ";
         cin >> opcion;
@@ -124,8 +126,13 @@ void Biblioteca::menu() {
                 cin.ignore();
                 cin.get();
             break;
+            case 10:
+                system("cls");
+                guardarDatos();
+                cin.ignore();
+                cin.get();
         }
-    } while (opcion != 9);
+    } while (opcion != 11);
     system("cls");
 }
 
@@ -308,6 +315,7 @@ void Biblioteca::ModificarDatosMats() {
                 int nuevoVolumen;
                 cout << "Ingrese el nuevo volumen: ";
                 cin >> nuevoVolumen;
+
                 revista->setVolumen(nuevoVolumen);
             }
             break;
@@ -423,6 +431,8 @@ void Biblioteca::RegistroPrestaYDevo() {
                 string idUsuario, numCatalogo, fechaPrestamo;
                 cout << "Ingrese el ID del usuario: ";
                 cin >> idUsuario;
+                cout << "Materiales registrados en el sistema" << endl;
+                cout << mats->toString() << endl;
                 cout << "Ingrese el número de catálogo del material: ";
                 cin >> numCatalogo;
                 cout << "Ingrese la fecha del préstamo (YYYY-MM-DD): ";
@@ -433,6 +443,7 @@ void Biblioteca::RegistroPrestaYDevo() {
             }
             case 2: {
                 string numCatalogo;
+                gestor->reportePrestamo();
                 cout << "Materiales registrados en el programa" << endl;
                 cout << mats->toString() << endl;
                 cout << "Ingrese el número de catálogo del material: ";
@@ -464,9 +475,24 @@ void Biblioteca::ReportePrestamo() {
 void Biblioteca::ReportePrestamosXusuario() {
     string id;
     cout << "\t\t\t Reporte de Prestamo X Usuario\t\t\t" << endl;
+    cout <<  "Usuarios Registrados en el sistema..." << endl;
+    cout << usuarios->toString() << endl;
     cout << "Digite el nombre del usuario que desea ver los prestamos que lleva..." << endl;
     cin >> id;
 
     gestor->reportePrestamosPorUsuario(id);
 }
 
+void Biblioteca::guardarDatos() {
+    // Save materials
+    archivos->guardarMateriales(mats);
+
+    // Save users
+    archivos->guardarUsuarios(usuarios);
+
+    // Save loans
+    archivos->guardarPrestamos(prestamos);
+
+    // Confirmation message
+    cout << "Los datos han sido guardados exitosamente." << endl;
+}

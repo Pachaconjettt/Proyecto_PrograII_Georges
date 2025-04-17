@@ -16,6 +16,7 @@
 #ifndef BIBLIOTECA_H
 #define BIBLIOTECA_H
 #include "ManejoArchivos.h"
+#include  "AdministradorAlmacenamiento.h"
 #include "ListaMateriales.h"
 #include "ListaUsuarios.h"
 #include "GestorPrestamos.h"
@@ -31,6 +32,7 @@ private:
     ListaMateriales* mats;
     ListaPrestamos* prestamos;
     GestorPrestamos * gestor;
+    AdministradorAlmacenamiento * archivos;
     Fecha* currentDate;
 public:
     Biblioteca();
@@ -49,6 +51,8 @@ public:
     void ReporteUsuarios();
     void ReportePrestamo();
     void ReportePrestamosXusuario();
+
+    void guardarDatos();
 };
 
 

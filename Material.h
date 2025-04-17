@@ -35,6 +35,9 @@ public:
     ~Material();
     virtual void prestar() = 0;
     virtual void guardar(ofstream&) = 0;
+    virtual string getNumClasificacion() = 0;
+    virtual string getAutores() = 0;
+    virtual string getPalabrasClave() = 0;
     virtual string getNumCatalogo() = 0;
     virtual string getNombre() = 0;
     virtual int getEstadoMaterial() = 0;
@@ -57,6 +60,9 @@ public:
     ~Libro();
     virtual void prestar() override;
     virtual void guardar(ofstream&) override;
+    virtual string getNumClasificacion() override;
+    virtual string getAutores() override;
+    virtual string getPalabrasClave() override;
     virtual string getNumCatalogo() override;
     virtual string getNombre() override;
     virtual int getEstadoMaterial() override;
@@ -82,6 +88,9 @@ public:
     ~Revista();
     virtual void prestar() override;
     virtual void guardar(ofstream&) override;
+    virtual string getNumClasificacion() override;
+    virtual string getAutores() override;
+    virtual string getPalabrasClave() override;
     virtual  string getNumCatalogo() override;
     virtual string getNombre() override;
     virtual int getEstadoMaterial() override;
@@ -108,6 +117,9 @@ public:
     ~MaterialDigital();
     virtual void prestar() override;
     virtual void guardar(ofstream&) override;
+    virtual string getNumClasificacion() override;
+    virtual string getAutores() override;
+    virtual string getPalabrasClave() override;
     virtual string getNumCatalogo() override;
     virtual string getNombre() override;
     virtual int getEstadoMaterial() override;
